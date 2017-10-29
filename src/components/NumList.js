@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NumInput from './NumInput';
+import expression from '../utils/expression';
 
 class NumList extends Component {
     constructor(props) {
@@ -16,7 +17,13 @@ class NumList extends Component {
     }
     handleClick() {
         const { getExpressions } = this.props;
-        getExpressions([]);
+        const { numList, total } = this.state;
+        let tempList = numList.map(e => parseInt(e)).filter(e => e);
+        let num = parseInt(total);
+
+        if (tempList.length > 0 && num) {
+            getExpressions(expression(tempList, num), num);
+        }
     }
     handleChange(index, event) {
         let value = event.target.value;
@@ -64,7 +71,7 @@ class NumList extends Component {
                                         removeItem={this.removeInput}/>
                         })
                     }
-                    <button onClick={this.addInput} className="add-input">+</button>
+                    {numList.length < 6 ? <button onClick={this.addInput} className="add-input">+</button> : null}
                 </div>
                 <div className="num-list">
                     <span>输入最后的结果</span>
@@ -72,6 +79,7 @@ class NumList extends Component {
                 </div>
                 <div className="button-box">
                     <button 
+                        disabled={!total}
                         className="calcul-button"
                         onClick={this.handleClick}
                         >点击计算</button>
