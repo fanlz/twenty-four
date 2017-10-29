@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ExpressionList from './components/ExpressionList';
 import NumList from './components/NumList';
-import './App.scss';
 
 class App extends Component {
     constructor(props) {

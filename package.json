@@ -4,9 +4,10 @@
   "description": "24 game",
   "main": "index.js",
   "scripts": {
-    "test": "test",
     "start": "webpack-dev-server",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "nyc ava --verbose",
+    "cover": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -19,15 +20,23 @@
   },
   "homepage": "https://github.com/fanlz/twenty-four#readme",
   "devDependencies": {
+    "ava": "^0.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.0",
     "css-loader": "^0.28.7",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "eslint": "^4.10.0",
     "eslint-plugin-react": "^7.4.0",
+    "jsdom": "^11.3.0",
     "node-sass": "^4.5.3",
+    "nyc": "^11.2.1",
     "postcss-loader": "^2.0.8",
+    "react-test-renderer": "^16.0.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
@@ -36,5 +45,13 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "babel-register",
+      "babel-polyfill",
+      "./test/helpers/setup_dom_env.js"
+    ]
   }
 }
