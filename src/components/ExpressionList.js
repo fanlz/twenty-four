@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class ExpressionList extends Component {
-    render() {
-        const { name } = this.props;
-        return <h1>hello, {name}</h1>
-    }
-}
+const ExpressionList = ({ list }) => (
+    <ul>
+        {
+            list.map((exp, i) => {
+                return <li className="expression" key={i}>{exp}</li>
+            })
+        }
+    </ul>
+);
 
 ExpressionList.propTypes = {
-    name: PropTypes.string
-}
-
+    list: PropTypes.array
+};
 export default ExpressionList;
