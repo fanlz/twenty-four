@@ -47,9 +47,9 @@ export default function solve(list, total=24) {
 
     // 将运算过程解析为运算表达式
     const analysis = function(arr) {
-        if (arr[0] && arr[0].length === 1)  return arr[0];
-
-        let str = '';
+        if (arr[0] && arr[0].length === 1) {
+            return arr[0];
+        }
         const extract = function([v, v1, v2, op]) {
             if (v1) {
                 if ((op === '*' || op === '+') && v2[0] > v1[0]) {
@@ -74,4 +74,4 @@ export default function solve(list, total=24) {
     // 计算时间差
     console.log(Date.now() - start, 'ms');
     return result;
-};
+}
