@@ -6,7 +6,7 @@ const baseConf = require('./webpack.base.js');
 const prodConf = {
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/dist/',
+        publicPath: '../dist/',
         filename: "[name].[hash].js"
     },
     plugins: [
