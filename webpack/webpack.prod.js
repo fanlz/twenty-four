@@ -6,13 +6,12 @@ const baseConf = require('./webpack.base.js');
 const prodConf = {
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '../dist',
-        filename: "bundle.[hash].js"
+        publicPath: '/dist/',
+        filename: "[name].[hash].js"
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             parallel: true,
-            output: { comments: false }
         })
     ],
     devtool: 'none',

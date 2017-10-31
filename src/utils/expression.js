@@ -44,8 +44,7 @@ export default function solve(list, total=24) {
         }
     };
     calculate(list.map(e => [e]));
-    console.log(entries)
-    debugger
+
     // 将运算过程解析为运算表达式
     const analysis = function(arr) {
         if (arr[0] && arr[0].length === 1) {
@@ -62,8 +61,6 @@ export default function solve(list, total=24) {
                 return v;
             }
         };
-        console.log(arr);
-        debugger
         let temp = [];
         arr.forEach(e => {
             let exp = extract(e);

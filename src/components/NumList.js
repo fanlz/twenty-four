@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NumInput from './NumInput';
-import expression from '../utils/expression';
-import MyWorker from 'worker-loader!../utils/worker';
+import MyWorker from 'worker-loader!babel-loader!../utils/worker';
 import { LOADING } from '../utils/images';
 
 class NumList extends Component {
@@ -28,6 +27,7 @@ class NumList extends Component {
         if (tempList.length > 0 && num) {
             this.setState({ loading: true });
             this.worker = new MyWorker();
+
             this.worker.onmessage = (event) => {
                 getExpressions(event.data.expressions, event.data.num);
                 this.cancel();
