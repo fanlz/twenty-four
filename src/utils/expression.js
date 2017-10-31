@@ -51,14 +51,14 @@ export default function solve(list, total=24) {
 
         let str = '';
         const extract = function([v, v1, v2, op]) {
-            if (v1.length === 4 && v2.length === 4) {
-                return extract(v1) + op + extract(v2);
-            } else if (v1.length === 4) {
-                return v === total ? `${extract(v1)}${op}${v2[0]}` : `(${extract(v1)}${op}${v2[0]})`;
-            } else if (v2.length === 4) {
-                return v === total ? `${v1[0]}${op}${extract(v2)}` : `(${v1[0]}${op}${extract(v2)})`;
+            if (v1) {
+                if ((op === '*' || op === '+') && v2[0] > v1[0]) {
+                    [v1, v2] = [v2, v1];
+                }
+                const exp = `${extract(v1)}${op}${extract(v2)}`;
+                return v === total ? exp : `(${exp})`;
             } else {
-                return v === total ? `${v1[0]}${op}${v2[0]}` : `(${v1[0]}${op}${v2[0]})`;
+                return v;
             }
         };
         let temp = [];
